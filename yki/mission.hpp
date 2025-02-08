@@ -1,6 +1,9 @@
 #include <iostream>
 #include <vector>
 #include <sstream>
+#include "commandProtocol.hpp"
+#include <string>
+#include <iomanip>
 
 #ifndef YKI_MISSION_HPP
 #define YKI_MISSION_HPP
@@ -55,6 +58,7 @@ class Mission{
         }
         std::string getMissionItemsAsJsonString(){
             std::ostringstream json;
+            json << std::fixed << std::setprecision(9);
             json << "{Mission:{";
             
             for (size_t i = 0; i < MissionItemList.size(); ++i) {
@@ -69,6 +73,11 @@ class Mission{
             json << "}}";
             return json.str();
         }
+        void sendMissionItemsToDrone(CommandManager* commandManager){
+            std::cout << "Sending Mission Items to Drone" << std::endl;
+            commandManager->sendMessage(nullptr,this->getMissionItemsAsJsonString());
+        }
 };
+
 
 #endif

@@ -53,23 +53,34 @@ class CommandManager {
             close(this->client_socket);
             close(this->sock);
         }
-        void sendMessage(Command* command) {
-            std::cout << "Sending message: " << command->commandName << std::endl;
-            std::string message = command->message;
-            std::cout<<message<<std::endl; 
-            size_t totalSent = 0;
-            ssize_t sendBytes;
-            
-            while (totalSent < message.size()) {
-                sendBytes = send(this->client_socket, message.c_str() + totalSent, message.size() - totalSent, 0);
-                if (sendBytes == -1) {
-                    std::cerr << "Mesaj gönderilemedi!" << std::endl;
-                    return;
+        void sendMessage(Command* command=nullptr, std::string missionMessageJsonCommand = "") {
+            if(missionMessageJsonCommand != ""){
+                std::cout<<"sending message as mission json: "<<missionMessageJsonCommand<<std::endl;
+                size_t totalSent = 0;
+                ssize_t sendBytes;
+                    sendBytes = send(this->client_socket, missionMessageJsonCommand.c_str(), missionMessageJsonCommand.size(), 0);
+                    if (sendBytes == -1) {
+                        std::cerr << "Mesaj gönderilemedi!" << std::endl;
+                        return;
+                    }
+            }else{
+                std::cout << "Sending message: " << command->commandName << std::endl;
+                std::string message = command->message;
+                std::cout<<message<<std::endl; 
+                size_t totalSent = 0;
+                ssize_t sendBytes;
+                
+                while (totalSent < message.size()) {
+                    sendBytes = send(this->client_socket, message.c_str() + totalSent, message.size() - totalSent, 0);
+                    if (sendBytes == -1) {
+                        std::cerr << "Mesaj gönderilemedi!" << std::endl;
+                        return;
+                    }
+                    totalSent += sendBytes;
                 }
-                totalSent += sendBytes;
-            }
 
-            std::cout << "Mesaj gönderildi: " << totalSent << " bytes" << std::endl;
+                std::cout << "Mesaj gönderildi: " << totalSent << " bytes" << std::endl;
+            }
         }
 
 

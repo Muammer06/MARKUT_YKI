@@ -23,6 +23,7 @@ class Reciever{
         int port = 14001;
         sockaddr_in addr;
         std::string targetIP = "127.0.0.1";
+        int logLevel = 0;
     public:
         
         enum MessageFormat{
@@ -71,15 +72,17 @@ class Reciever{
             }
 
             std::string messageStr(buffer, recvBytes);
-            std::cout << "Mesaj alındı: " << messageStr << std::endl;
-
+            if(logLevel != 0){
+                std::cout << "Mesaj alındı: " << messageStr << std::endl;
+            }
             MessageFormat messageFormat;
 
             if (messageStr.empty()) {
-                std::cerr << "Mesaj boş!" << std::endl;
+                //std::cerr << "Mesaj boş!" << std::endl;
                 messageFormat = NULLMESSAGE;
                 return new Message(NULLMESSAGE,"Null");
             } else if (messageStr.find("{") != std::string::npos) {
+                std::cout<<"Mission"<<std::endl;
                 messageFormat = MISSION;
             } else {
                 messageFormat = STRCOMMAND;
