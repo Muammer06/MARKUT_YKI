@@ -56,13 +56,13 @@ class Mission{
         std::vector<MissionItem*> getMissionItems(){
             return this->MissionItemList;
         }
-        std::string getMissionItemsAsJsonString(){
+        std::string getMissionItemsAsJsonString() {
             std::ostringstream json;
             json << std::fixed << std::setprecision(9);
-            json << "{\"Mission\":{";
+            json << "{\"Mission\":[";  // Changed to array
             
             for (size_t i = 0; i < MissionItemList.size(); ++i) {
-                json << "\"Item\":{\"lat\":" << MissionItemList[i]->lat
+                json << "{\"lat\":" << MissionItemList[i]->lat
                     << ",\"lng\":" << MissionItemList[i]->lng
                     << ",\"alt\":" << MissionItemList[i]->alt << "}";
                 if (i != MissionItemList.size() - 1) {
@@ -70,7 +70,7 @@ class Mission{
                 }
             }
             
-            json << "}}";
+            json << "]}";  // Close array and object
             return json.str();
         }
         void sendMissionItemsToDrone(CommandManager* commandManager){
