@@ -59,12 +59,12 @@ class Mission{
         std::string getMissionItemsAsJsonString(){
             std::ostringstream json;
             json << std::fixed << std::setprecision(9);
-            json << "{Mission:{";
+            json << "{\"Mission\":{";
             
             for (size_t i = 0; i < MissionItemList.size(); ++i) {
-                json << "Item{lat:" << MissionItemList[i]->lat
-                    << ",lng:" << MissionItemList[i]->lng
-                    << ",alt:" << MissionItemList[i]->alt << "}";
+                json << "\"Item\":{\"lat\":" << MissionItemList[i]->lat
+                    << ",\"lng\":" << MissionItemList[i]->lng
+                    << ",\"alt\":" << MissionItemList[i]->alt << "}";
                 if (i != MissionItemList.size() - 1) {
                     json << ",";
                 }

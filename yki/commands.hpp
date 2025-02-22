@@ -10,7 +10,7 @@ class Command{
         std::string param1 = "";
         std::string param2 = "";
         std::string param3 = "";
-        std::string message = this->messageID + "," + this->param1 + "," + this->param2 + "," + this->param3;
+        std::string message = this->messageID + "," + this->param1 + "," + this->param2 + "," + this->param3 + "\n";
 
     private:
         
@@ -23,7 +23,7 @@ class Heartbeat: public Command{
         Heartbeat(){
             this->messageID = 0;
             this->commandName = "HEARTBEAT";
-            this->message = std::to_string(this->messageID) + "," + this->param1 + "," + this->param2 + "," + this->param3;
+            this->message = std::to_string(this->messageID) + "," + this->param1 + "," + this->param2 + "," + this->param3 + "\n";
         }
 };
 
@@ -35,7 +35,7 @@ class SetMode: public Command{
             this->messageID = 1;
             this->commandName = "SET_MODE";
             this->param1 = std::to_string(mode);
-            this->message = std::to_string(this->messageID) + "," + this->param1 + "," + this->param2 + "," + this->param3;
+            this->message = std::to_string(this->messageID) + "," + this->param1 + "," + this->param2 + "," + this->param3 + "\n";
         }
 };
 
@@ -47,7 +47,7 @@ class Arm: public Command{
             this->messageID = 2;
             this->commandName = "ARM";
             this->param1 = arm ? "1" : "0";
-            this->message = std::to_string(this->messageID) + "," + this->param1 + "," + this->param2 + "," + this->param3;
+            this->message = std::to_string(this->messageID) + "," + this->param1 + "," + this->param2 + "," + this->param3 + "\n";
         }
 };
 
@@ -59,7 +59,7 @@ class MissionStart: public Command{
         
         MissionStart(){
             this->commandName = "MISSION_START";
-            this->message = std::to_string(this->messageID) + "," + this->param1 + "," + this->param2 + "," + this->param3;
+            this->message = std::to_string(this->messageID) + "," + this->param1 + "," + this->param2 + "," + this->param3 + "\n";
         }
 };
 
@@ -71,7 +71,7 @@ class MissionClear: public Command{
         
         MissionClear(){
             this->commandName = "MISSION_CLEAR";
-            this->message = std::to_string(this->messageID) + "," + this->param1 + "," + this->param2 + "," + this->param3;
+            this->message = std::to_string(this->messageID) + "," + this->param1 + "," + this->param2 + "," + this->param3 + "\n";
         }
 };
 
@@ -83,7 +83,7 @@ class RTL: public Command{
         
         RTL(){
             this->commandName = "RTL";
-            this->message = std::to_string(this->messageID) + "," + this->param1 + "," + this->param2 + "," + this->param3;
+            this->message = std::to_string(this->messageID) + "," + this->param1 + "," + this->param2 + "," + this->param3 + "\n";
         }
 };
 
@@ -96,7 +96,7 @@ class RTLMode: public Command{
         RTLMode(u_int8_t mode){
             this->commandName = "RTL_MODE";
             this->param1 = std::to_string(mode);
-            this->message = std::to_string(this->messageID) + "," + this->param1 + "," + this->param2 + "," + this->param3;
+            this->message = std::to_string(this->messageID) + "," + this->param1 + "," + this->param2 + "," + this->param3 + "\n";
         }
 };
 
@@ -110,7 +110,7 @@ class ParamSet: public Command{
             this->commandName = "PARAM_SET";
             this->param1 = paramName;
             this->param2 = std::to_string(paramValue);
-            this->message = std::to_string(this->messageID) + "," + this->param1 + "," + this->param2 + "," + this->param3;
+            this->message = std::to_string(this->messageID) + "," + this->param1 + "," + this->param2 + "," + this->param3 + "\n";
         }
 };
 
